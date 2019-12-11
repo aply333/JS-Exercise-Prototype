@@ -86,10 +86,19 @@ Car.prototype.fill = function(gallons){
   return this.tank 
 }
 Car.prototype.drive = function(distance){
-  this.odometer = this.odometer+distance;
-  this.tank = this.tank-(distance/this.milesPerGallon)
-  return this.odometer
-}
+  let maxDistance = this.milesPerGallon*this.tank;
+   if(distance>=maxDistance){
+    this.odometer = this.odometer+maxDistance
+    this.tank = 0  
+    return `I ran out of fuel at ${this.odometer}`
+  }else{
+    this.tank=this.tank-(distance/this.milesPerGallon)
+    this.odometer=this.odometer+distance
+  }
+  
+  }
+  // return this.odometer
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
